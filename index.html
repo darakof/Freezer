@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open/Close Loop</title>
+</head>
+<body>
+<script>
+    // Function to handle the open/close cycle
+    function windowCycle() {
+        // Open new window
+        const newWindow = window.open('', '_blank');
+        
+        // Close the new window after 1 second
+        if (newWindow) {
+            newWindow.document.write('<script>setTimeout(() => window.close(), 1000)<\/script>');
+        }
+        
+        // Repeat the cycle every 2 seconds
+        setTimeout(windowCycle, 2000);
+    }
+
+    // Start the initial cycle
+    windowCycle();
+</script>
+</body>
+</html>
